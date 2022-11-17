@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_color_light"
+    android:orientation="vertical"
+    tools:context="com.ihexep.presentation.basket.BasketFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/DarkImageButton"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="30dp"
+            android:contentDescription="@string/todo"
+            app:icon="@drawable/ic_arrow_left"
+            app:iconSize="14dp" />
+
+        <TextView
+            style="@style/font_style_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="92dp"
+            android:text="@string/add_address"
+            android:textColor="@color/main_color_dark"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnChangeAddress"
+            style="@style/AccentImageButton"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="46dp"
+            android:contentDescription="@string/todo"
+            app:icon="@drawable/ic_location"
+            app:iconSize="18dp" />
+
+    </FrameLayout>
+
+    <TextView
+        style="@style/font_style_bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/my_cart"
+        android:textColor="@color/main_color_dark"
+        android:textSize="35sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/background_top_rounded_box"
+        android:backgroundTint="@color/main_color_dark"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBasket"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="57dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_basket" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="12dp"
+            android:alpha=".25"
+            android:background="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="35dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_style_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/total"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                style="@style/font_style_bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.38"
+                android:text="@string/text_sample"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="35dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_style_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/delivery"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tvDeliveryPrice"
+                style="@style/font_style_bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.38"
+                android:text="@string/text_sample"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="23dp"
+            android:alpha=".25"
+            android:background="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnCheckout"
+            style="@style/AccentImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="40dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="14dp"
+            android:text="@string/checkout"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

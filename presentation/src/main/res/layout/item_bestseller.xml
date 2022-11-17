@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivPicture"
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/white"
+            android:contentDescription="@string/todo"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginEnd="19dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPriceWithDiscount"
+                style="@style/font_style_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_sample"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvPriceWithoutDiscount"
+                style="@style/font_style_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:text="@string/text_sample"
+                android:textColor="@color/text_without_discount_color"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCellphoneTitle"
+            style="@style/font_style_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="15dp"
+            android:ellipsize="marquee"
+            android:letterSpacing="-0.04"
+            android:singleLine="true"
+            android:text="@string/text_sample"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnFavourite"
+        style="@style/ImageButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@android:color/white"
+        android:contentDescription="@string/todo"
+        android:elevation="8dp"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/selector_favourite"
+        app:iconSize="12dp"
+        app:iconTint="@color/main_color_accent" />
+</androidx.cardview.widget.CardView>

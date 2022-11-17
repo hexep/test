@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:paddingBottom="44dp"
+    tools:context="com.ihexep.presentation.filter.FilterFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:text="@string/filter_options"
+        android:textColor="@color/main_color_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textBrand"
+        style="@style/font_style_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/brand"
+        android:textColor="@color/main_color_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/closeButton"
+        app:layout_constraintTop_toBottomOf="@+id/closeButton" />
+
+    <TextView
+        android:id="@+id/textPrice"
+        style="@style/font_style_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/price"
+        android:textColor="@color/main_color_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerPrice"
+        app:layout_constraintStart_toStartOf="@+id/textBrand" />
+
+    <TextView
+        android:id="@+id/textSize"
+        style="@style/font_style_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/size"
+        android:textColor="@color/main_color_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerSize"
+        app:layout_constraintStart_toStartOf="@+id/textPrice" />
+
+    <Button
+        android:id="@+id/closeButton"
+        style="@style/DarkImageButton"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="24dp"
+        app:icon="@drawable/ic_close"
+        app:iconSize="11dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/doneButton"
+        style="@style/AccentImageButton"
+        android:layout_width="86dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:letterSpacing="0"
+        android:padding="0dp"
+        android:text="@string/done"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerBrand"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="31dp"
+        android:background="@drawable/spinner_filter_background"
+        android:theme="@style/SpinnerFilterStyle"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/closeButton"
+        app:layout_constraintTop_toBottomOf="@+id/textBrand" />
+
+    <Spinner
+        android:id="@+id/spinnerPrice"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/spinner_filter_background"
+        android:theme="@style/SpinnerFilterStyle"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerBrand"
+        app:layout_constraintStart_toStartOf="@+id/spinnerBrand"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBrand" />
+
+    <Spinner
+        android:id="@+id/spinnerSize"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/spinner_filter_background"
+        android:entries="@array/display_size"
+        android:theme="@style/SpinnerFilterStyle"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerPrice"
+        app:layout_constraintStart_toStartOf="@+id/spinnerPrice"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPrice" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,248 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- App main theme -->
+    <style name="Theme.TestProject" parent="Theme.Material3.Light">
+        <item name="fontFamily">@font/mark_pro</item>
+        <item name="android:fontFamily">@font/mark_pro</item>
+        <item name="android:textColor">@color/main_color_dark</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+        <item name="colorPrimary">@color/main_color_dark</item>
+        <item name="colorPrimaryDark">@color/main_color_dark</item>
+        <item name="colorAccent">@color/main_color_accent</item>
+        <item name="android:windowBackground">@color/main_color_light</item>
+        <item name="android:ambientShadowAlpha">0.01</item>
+        <item name="android:spotShadowAlpha">0.08</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:statusBarColor" tools:targetApi="m">@android:color/transparent</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Splash style -->
+    <style name="Theme.TestProject.Splash" parent="Theme.TestProject">
+        <item name="android:navigationBarColor">@color/main_color_dark</item>
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <!-- Font styles -->
+    <style name="font_style_regular">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/mark_pro</item>
+    </style>
+
+    <style name="font_style_bold">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/mark_pro_bold</item>
+    </style>
+
+    <!-- Spinner style -->
+    <style name="SpinnerFilterStyle">
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/mark_pro</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="SpinnerLocationStyle">
+        <item name="fontFamily">@font/mark_pro</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- BottomSheet style -->
+    <style name="CustomBottomSheetDialog" parent="@style/ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up_dialog</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_down</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="backgroundTint">@android:color/white</item>
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceBottomSheetDialog</item>
+    </style>
+
+    <style name="CustomShapeAppearanceBottomSheetDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">30dp</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- TabLayout style -->
+    <style name="CustomTabLayout" parent="Widget.Material3.TabLayout">
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabIndicatorColor">@color/main_color_accent</item>
+        <item name="tabIndicatorAnimationDuration">1500</item>
+        <item name="tabIndicatorFullWidth">true</item>
+        <item name="tabPaddingStart">6dp</item>
+        <item name="tabPaddingEnd">6dp</item>
+        <item name="tabTextAppearance">@style/TabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/main_color_dark</item>
+        <item name="tabSelectedTextAppearance">@style/SelectedTabTextAppearance</item>
+        <item name="tabTextColor">@color/unselected_tab_color</item>
+        <item name="tabRippleColor">@null</item>
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="fontFamily">@font/mark_pro</item>
+        <item name="android:textSize">18sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="tabSelectedTextAppearance">@color/main_color_dark</item>
+    </style>
+
+    <style name="SelectedTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="fontFamily">@font/mark_pro_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="tabSelectedTextAppearance">@color/main_color_dark</item>
+    </style>
+
+    <!-- Chip styles -->
+    <!-- Style of the device storage chip -->
+    <style name="ChipDeviceCapacity" parent="Widget.Material3.Chip.Assist">
+        <!-- Chip check ability  -->
+        <item name="android:checkable">true</item>
+        <!-- Chip height -->
+        <item name="chipMinHeight">30dp</item>
+        <!-- Corner radius of the chip -->
+        <item name="chipCornerRadius">10dp</item>
+        <!-- Chip background color selector -->
+        <item name="chipBackgroundColor">@color/selector_storage</item>
+        <!-- Chip text color selector -->
+        <item name="android:textColor">@color/selector_storage_text</item>
+        <!-- Border color -->
+        <item name="chipStrokeColor">@android:color/transparent</item>
+        <!-- Ripple color -->
+        <item name="rippleColor">@color/main_color_accent</item>
+        <!-- Chip text appearance -->
+        <item name="android:includeFontPadding">true</item>
+        <item name="android:textAppearance">@style/ChipDeviceColor.Text</item>
+    </style>
+
+    <style name="ChipDeviceColor.Text" parent="Widget.Material3.Chip.Assist">
+        <!-- Text size of the chip -->
+        <item name="android:textSize">13sp</item>
+        <!-- Text font of the chip -->
+        <item name="fontFamily">@font/mark_pro_bold</item>
+        <!-- Text alignment the chip -->
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!-- Style of the device color chip -->
+    <style name="ChipDeviceColor" parent="Widget.Material3.Chip.Assist">
+        <item name="android:minWidth">40dp</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="chipEndPadding">0dp</item>
+        <item name="chipStartPadding">0dp</item>
+        <item name="textEndPadding">0dp</item>
+        <item name="textStartPadding">0dp</item>
+        <item name="android:checkable">true</item>
+        <!-- Chip background color -->
+        <item name="chipBackgroundColor">@null</item>
+        <!-- Ripple color -->
+        <item name="rippleColor">@android:color/white</item>
+        <!-- Border color -->
+        <item name="chipStrokeColor">@android:color/transparent</item>
+        <!-- Chip background shape -->
+        //
+        <item name="chipIcon">@drawable/ic_device_color</item>
+        <!-- Chip background shape size -->
+        <item name="chipIconSize">40dp</item>
+        <!-- Chip checked state icon -->
+        <item name="checkedIcon">@drawable/ic_checked</item>
+    </style>
+
+    <!-- Button styles -->
+    <style name="ImageButton" parent="Widget.Material3.Button.IconButton.Filled">
+        <item name="tintMode">src_atop</item>
+        <item name="iconGravity">textStart</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
+    <style name="AccentImageButton" parent="ImageButton">
+        <item name="backgroundTint">@color/selector_button_accent</item>
+    </style>
+
+    <style name="DarkImageButton" parent="ImageButton">
+        <item name="backgroundTint">@color/selector_button_dark</item>
+    </style>
+
+    <style name="ToggleImageButton" parent="Widget.Material3.Button.IconButton.Filled">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:minWidth">20dp</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <!-- TextInput styles -->
+    <!-- Search bar style -->
+    <style name="SearchBar" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="fontFamily">@font/mark_pro</item>
+        <item name="android:fontFamily">@font/mark_pro</item>
+        <item name="android:textSize">12sp</item>
+        <item name="materialThemeOverlay">@style/SearchBar.ThemeOverlay</item>
+        <item name="shapeAppearanceOverlay">@style/SearchBar.ShapeAppearanceOverlay</item>
+    </style>
+
+    <style name="SearchBar.ThemeOverlay" parent="">
+        <item name="editTextStyle">@style/SearchBar.ThemeOverlay.TextStyle</item>
+    </style>
+
+    <style name="SearchBar.ThemeOverlay.TextStyle" parent="@style/Widget.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">2dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+
+    <style name="SearchBar.ShapeAppearanceOverlay" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25dp</item>
+    </style>
+
+    <!-- Location bar style -->
+    <style name="LocationBar" parent="@style/Widget.Material3.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
+        <item name="fontFamily">@font/mark_pro</item>
+        <item name="android:fontFamily">@font/mark_pro</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="materialThemeOverlay">@style/LocationBar.ThemeOverlay</item>
+    </style>
+
+    <style name="LocationBar.ShapeAppearanceOverlay" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+    </style>
+
+    <style name="LocationBar.ThemeOverlay" parent="">
+        <item name="editTextStyle">@style/LocationBar.ThemeOverlay.TextStyle</item>
+    </style>
+
+    <style name="LocationBar.ThemeOverlay.TextStyle" parent="">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+
+</resources>

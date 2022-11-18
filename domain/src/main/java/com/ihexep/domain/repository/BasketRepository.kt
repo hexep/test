@@ -4,6 +4,6 @@ import com.ihexep.domain.common.Resource
 import com.ihexep.domain.model.Basket
 import kotlinx.coroutines.flow.Flow
 
-interface StoreRepository {
+interface BasketRepository {
     fun getBasket(): Flow<Resource<Basket>>
 }

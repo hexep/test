@@ -1,13 +1,13 @@
 package com.ihexep.data.repository
 
 import com.ihexep.domain.common.Resource
-import com.ihexep.data.network.api.StoreApi
+import com.ihexep.data.network.api.BasketApi
 import com.ihexep.data.network.dto.toBasket
 import com.ihexep.domain.model.Basket
-import com.ihexep.domain.repository.StoreRepository
+import com.ihexep.domain.repository.BasketRepository
 import kotlinx.coroutines.flow.*
 
-class StoreRepositoryImpl(private val api: StoreApi): StoreRepository {
+class BasketRepositoryImpl(private val api: BasketApi): BasketRepository {
 
     override fun getBasket(): Flow<Resource<Basket>> = flow {
         try {

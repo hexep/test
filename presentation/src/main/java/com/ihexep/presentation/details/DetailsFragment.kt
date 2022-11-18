@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -44,12 +46,18 @@ class DetailsFragment : Fragment() {
             findNavController().navigate(R.id.action_Details_to_MainScreen)
         }
 
-        lifecycleScope.launch {
-            viewModel.details.collect { state ->
-                when (state) {
-                    is Resource.Loaded -> { setScreenValues(state.data) }
-                    is Resource.Loading -> { }
-                    is Resource.Error -> { println(state.errorMessage) }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state ->
+                    when (state) {
+                        is Resource.Loaded -> {
+                            setScreenValues(state.data)
+                        }
+                        is Resource.Loading -> {}
+                        is Resource.Error -> {
+                            println(state.errorMessage)
+                        }
+                    }
                 }
             }
         }
@@ -76,15 +84,17 @@ class DetailsFragment : Fragment() {
         binding.groupStorage.removeAllViews()
         if (details.capacity.isNotEmpty()) { details.capacity.forEach { addCapacity(it) } }
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            val adapter = ListDelegationAdapter(productImage {/* OnClick Event */})
-            adapter.items = details.images
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                val adapter = ListDelegationAdapter(productImage {/* OnClick Event */ })
+                adapter.items = details.images
 
-            val price = NumberFormat.getCurrencyInstance(Locale.US).format(details.price)
+                val price = NumberFormat.getCurrencyInstance(Locale.US).format(details.price)
 
-            withContext(Dispatchers.Main) {
-                binding.imageCarousel.adapter = adapter
-                binding.tvProductPrice.text = price
+                withContext(Dispatchers.Main) {
+                    binding.imageCarousel.adapter = adapter
+                    binding.tvProductPrice.text = price
+                }
             }
         }
     }

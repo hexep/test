@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class BasketViewModel(private val getBasketUseCase: GetBasketUseCase): ViewModel() {
+class BasketViewModel(private val basket: GetBasketUseCase): ViewModel() {
 
     private val _state = MutableStateFlow<Resource<Basket>>(Resource.Loading)
     val state = _state.asStateFlow()
@@ -20,7 +20,7 @@ class BasketViewModel(private val getBasketUseCase: GetBasketUseCase): ViewModel
 
     private fun getBasket() {
         viewModelScope.launch {
-            getBasketUseCase().collect { resource ->
+            basket().collect { resource ->
                 _state.value = resource
             }
         }

@@ -3,15 +3,14 @@ package com.ihexep.presentation.details
 import com.ihexep.domain.common.Resource
 import com.ihexep.domain.model.PhoneDetails
 import com.ihexep.domain.usecases.GetPhoneDetailsUseCase
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class DetailsViewModel(private val getDetails: GetPhoneDetailsUseCase): ViewModel() {
+class DetailsViewModel(private val details: GetPhoneDetailsUseCase): ViewModel() {
 
-    private val _details = MutableStateFlow<Resource<PhoneDetails>>(Resource.Loading)
-    val details = _details.asStateFlow()
+    private val _state = MutableStateFlow<Resource<PhoneDetails>>(Resource.Loading)
+    val state = _state.asStateFlow()
 
     init {
         getProductDetails()
@@ -19,8 +18,8 @@ class DetailsViewModel(private val getDetails: GetPhoneDetailsUseCase): ViewMode
 
     private fun getProductDetails() {
         viewModelScope.launch {
-            getDetails().collect { resource ->
-                _details.value = resource
+            details().collect { resource ->
+                _state.value = resource
             }
         }
     }

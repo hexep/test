@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val AppModule = module {
-    viewModel { StoreViewModel(get()) }
-    viewModel { DetailsViewModel(get()) }
-    viewModel { BasketViewModel (get()) }
+    viewModel { StoreViewModel(categories = get(), phones = get()) }
+    viewModel { DetailsViewModel(details = get()) }
+    viewModel { BasketViewModel(basket = get()) }
 }

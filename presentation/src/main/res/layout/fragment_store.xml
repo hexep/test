@@ -37,21 +37,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnFilter" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProductList"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
-        android:clipToPadding="false"
-        android:paddingBottom="80dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLocation"
-        tools:itemCount="10"
-        tools:listitem="@layout/item_bestseller" />
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomNavLayout"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLocation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/categories_layout"
+                layout="@layout/item_category_list" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProductList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:paddingBottom="80dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_bestseller" />
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/bottomNavLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/background_top_rounded_box"

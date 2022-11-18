@@ -2,22 +2,27 @@ package com.ihexep.presentation.store.adapter
 
 import android.graphics.Color
 import android.graphics.PorterDuff
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.ihexep.domain.model.ProductCategory
 import com.ihexep.presentation.databinding.ItemCategoryBinding
 
-fun categoryItem(
-    clickListener: (ProductCategory) -> Unit,
-    bindListener: (View, ProductCategory) -> Unit
-) = adapterDelegateViewBinding<ProductCategory, Any, ItemCategoryBinding>(
+var lastSelectedPos = 0
+
+fun categoryItem(clickListener: (ProductCategory) -> Unit) =
+    adapterDelegateViewBinding<ProductCategory, Any, ItemCategoryBinding>(
     { layoutInflater, root -> ItemCategoryBinding.inflate(layoutInflater, root, false) }
 ) {
 
     binding.root.setOnClickListener {
         clickListener(item)
+
+        val itemToDeselect = lastSelectedPos
+        lastSelectedPos = item.id
+        (it.parent as RecyclerView).adapter?.notifyItemChanged(itemToDeselect)
+        it.isSelected = true
+        binding.catIcon.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)
         // Scroll clicked item to center
         val screenWidth = it.resources.displayMetrics.widthPixels
         val leftPadding = (it.parent as RecyclerView).paddingLeft
@@ -25,9 +30,9 @@ fun categoryItem(
         val layoutManager = (it.parent as RecyclerView).layoutManager as LinearLayoutManager
         layoutManager.scrollToPositionWithOffset(item.id, centerOfScreen)
     }
-    bind {
-        bindListener(binding.root, item)
 
+    bind {
+        binding.root.isSelected = item.id == lastSelectedPos
         // Set color filter
         if (binding.root.isSelected) {
             binding.catIcon.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN)

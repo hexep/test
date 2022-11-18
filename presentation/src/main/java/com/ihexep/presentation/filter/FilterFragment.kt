@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ihexep.presentation.databinding.FragmentFilterBinding
 import com.ihexep.presentation.store.StoreViewModel
@@ -25,32 +27,35 @@ class FilterFragment : BottomSheetDialogFragment() {
         binding = FragmentFilterBinding.inflate(inflater, container, false)
         binding.closeButton.setOnClickListener { dismiss() }
 
-        // Fill brands spinner
-        lifecycleScope.launch {
-            viewModel.brands.collect {
-                val brandsAdapter = ArrayAdapter(
-                    requireActivity(),
-                    android.R.layout.simple_spinner_item,
-                    listOf("None").plus(it)
-                )
-                brandsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                withContext(Dispatchers.Main) {
-                    binding.spinnerBrand.adapter = brandsAdapter
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    // Fill brands spinner
+                    viewModel.brands.collect {
+                        val brandsAdapter = ArrayAdapter(
+                            requireActivity(),
+                            android.R.layout.simple_spinner_item,
+                            listOf("None").plus(it)
+                        )
+                        brandsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        withContext(Dispatchers.Main) {
+                            binding.spinnerBrand.adapter = brandsAdapter
+                        }
+                    }
                 }
-            }
-        }
-
-        // Fill price spinner
-        lifecycleScope.launch {
-            viewModel.priceRanges.collect {
-                val pricesAdapter = ArrayAdapter(
-                    requireActivity(),
-                    android.R.layout.simple_spinner_item,
-                    listOf("None").plus(it)
-                )
-                pricesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                withContext(Dispatchers.Main) {
-                    binding.spinnerPrice.adapter = pricesAdapter
+                launch {
+                    // Fill price spinner
+                    viewModel.priceRanges.collect {
+                        val pricesAdapter = ArrayAdapter(
+                            requireActivity(),
+                            android.R.layout.simple_spinner_item,
+                            listOf("None").plus(it)
+                        )
+                        pricesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                        withContext(Dispatchers.Main) {
+                            binding.spinnerPrice.adapter = pricesAdapter
+                        }
+                    }
                 }
             }
         }

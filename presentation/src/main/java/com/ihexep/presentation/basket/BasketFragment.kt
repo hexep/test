@@ -8,12 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.ihexep.domain.common.Resource
 import com.ihexep.domain.model.Basket
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.text.NumberFormat
@@ -39,12 +40,18 @@ class BasketFragment : Fragment() {
 
         binding.rvBasket.adapter = adapter
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.state.collect { state ->
-                when (state) {
-                    is Resource.Loaded -> { setScreenValues(state.data) }
-                    is Resource.Loading -> { }
-                    is Resource.Error -> { println(state.errorMessage) }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state ->
+                    when (state) {
+                        is Resource.Loaded -> {
+                            setScreenValues(state.data)
+                        }
+                        is Resource.Loading -> {}
+                        is Resource.Error -> {
+                            println(state.errorMessage)
+                        }
+                    }
                 }
             }
         }

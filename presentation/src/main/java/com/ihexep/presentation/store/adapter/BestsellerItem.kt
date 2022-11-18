@@ -17,12 +17,8 @@ fun bestsellerItem(itemClickedListener: (Bestseller) -> Unit) =
         }
         bind {
             binding.btnFavourite.isSelected = item.isFavorites
-            binding.btnFavourite.setOnClickListener {
-                it.isSelected = !it.isSelected
-            }
-            binding.ivPicture.load(item.picture) {
-                crossfade(750)
-            }
+            binding.btnFavourite.setOnClickListener { it.isSelected = !it.isSelected }
+            binding.ivPicture.load(item.picture) { crossfade(750) }
             binding.tvCellphoneTitle.text = item.title
             val formatter = NumberFormat.getCurrencyInstance(Locale.US)
             formatter.maximumFractionDigits = 0

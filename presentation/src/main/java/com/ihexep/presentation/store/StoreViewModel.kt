@@ -4,15 +4,23 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ihexep.domain.common.Resource
 import com.ihexep.domain.model.Phones
+import com.ihexep.domain.model.ProductCategory
+import com.ihexep.domain.usecases.GetCategoriesUseCase
 import com.ihexep.domain.usecases.GetPhonesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class StoreViewModel(private val getAll: GetPhonesUseCase): ViewModel() {
+class StoreViewModel(
+    private val categories: GetCategoriesUseCase,
+    private val phones: GetPhonesUseCase
+    ): ViewModel() {
 
-    private val _state = MutableStateFlow<Resource<Phones>>(Resource.Loading)
-    val state = _state.asStateFlow()
+    private val _categoriesState = MutableStateFlow<Resource<List<ProductCategory>>>(Resource.Loading)
+    val categoriesState = _categoriesState.asStateFlow()
+
+    private val _productState = MutableStateFlow<Resource<Phones>>(Resource.Loading)
+    val productState = _productState.asStateFlow()
 
     private val _brands = MutableStateFlow<List<String>>(emptyList())
     val brands = _brands.asStateFlow()
@@ -21,14 +29,22 @@ class StoreViewModel(private val getAll: GetPhonesUseCase): ViewModel() {
     val priceRanges = _priceRanges.asStateFlow()
 
     init {
+        getCategories()
         getAllCellphones()
+    }
+
+    private fun getCategories() {
+        viewModelScope.launch {
+            categories().collect { resource ->
+                _categoriesState.value = resource
+            }
+        }
     }
 
     private fun getAllCellphones() {
         viewModelScope.launch {
-            getAll().collect { resource ->
-                _state.value = resource
-                println(Thread.currentThread().name)
+            phones().collect { resource ->
+                _productState.value = resource
                 if (resource is Resource.Loaded) {
                     setBrands(resource.data)
                     setPriceRanges()

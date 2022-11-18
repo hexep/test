@@ -8,15 +8,11 @@ import com.ihexep.presentation.databinding.ItemBestsellerListBinding
 fun bestsellerList(clickListener: (Bestseller) -> Unit) =
     adapterDelegateViewBinding<List<Bestseller>, Any, ItemBestsellerListBinding>(
         { layoutInflater, root -> ItemBestsellerListBinding.inflate(layoutInflater, root, false) },
-        on = { item: Any, items: List<Any>, position: Int ->
-            item is List<*> && item.isNotEmpty() && item[0] is Bestseller
-        }
+        on = { item: Any, _, _ -> item is List<*> && item.isNotEmpty() && item[0] is Bestseller }
     ) {
         bind {
             val adapter = ListDelegationAdapter(bestsellerItem { clickListener(it) })
             adapter.items = item
             binding.rvBestsellers.adapter = adapter
-
-
         }
     }

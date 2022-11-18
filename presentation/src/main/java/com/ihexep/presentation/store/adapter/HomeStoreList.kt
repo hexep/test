@@ -9,9 +9,7 @@ import com.ihexep.presentation.databinding.ItemHotSaleListBinding
 fun homeStoreList(clickListener: (HomeStore) -> Unit) =
     adapterDelegateViewBinding<List<HomeStore>, Any, ItemHotSaleListBinding>(
         { layoutInflater, root -> ItemHotSaleListBinding.inflate(layoutInflater, root, false) },
-        on = { item: Any, _, _ ->
-            item is List<*> && item.isNotEmpty() && item[0] is HomeStore
-        }
+        on = { item: Any, _, _ -> item is List<*> && item.isNotEmpty() && item[0] is HomeStore }
     ) {
         val helper = LinearSnapHelper()
         helper.attachToRecyclerView(binding.rvHotSales)
